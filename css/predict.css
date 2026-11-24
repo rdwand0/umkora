@@ -1,0 +1,40 @@
+/* Halaman Prediksi Kesehatan UMKM (modul: Webhook /predict → Supabase RPC predict_umkm) */
+.pred-grid { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.pred-card { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+.pred-card h3 { font-size: 15px; font-weight: 800; color: var(--gray-900); margin-bottom: 4px; }
+.pred-sub { font-size: 12px; color: var(--gray-500); margin-bottom: 16px; }
+.pred-field { margin-bottom: 16px; }
+.pred-field label { display: block; font-size: 12px; font-weight: 700; color: var(--gray-700); margin-bottom: 6px; }
+.pred-field input[type="text"] { width: 100%; padding: 10px 12px; border: 1.5px solid var(--gray-200); border-radius: 10px; font: inherit; font-size: 14px; }
+.pred-field input[type="text"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+.pred-slider-row { margin-bottom: 14px; }
+.pred-slider-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.pred-slider-name { font-size: 13px; font-weight: 700; color: var(--gray-800); cursor: help; border-bottom: 1px dotted var(--gray-400); }
+.pred-slider-val { min-width: 28px; text-align: center; font-weight: 800; font-size: 14px; color: #fff; background: var(--primary); border-radius: 8px; padding: 1px 8px; }
+.pred-slider-row input[type="range"] { width: 100%; accent-color: var(--primary); }
+.pred-slider-scale { display: flex; justify-content: space-between; font-size: 10px; color: var(--gray-500); }
+.pred-total { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 14px; background: var(--primary-light); border-radius: 10px; margin: 6px 0 14px; font-size: 12px; font-weight: 700; color: var(--primary-deep); }
+.pred-total b { font-size: 20px; }
+.pred-error { background: #fee2e2; color: #991b1b; border-radius: 10px; padding: 10px 14px; font-size: 12px; margin-bottom: 12px; }
+.pred-error ul { margin: 6px 0 0 18px; }
+.pred-result-top { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 14px; }
+.pred-score { font-size: 44px; font-weight: 800; line-height: 1; color: var(--gray-900); }
+.pred-score small { font-size: 16px; color: var(--gray-500); font-weight: 600; }
+.pred-chip { display: inline-block; padding: 5px 14px; border-radius: 999px; font-size: 12px; font-weight: 800; color: #fff; }
+.pred-label { font-size: 13px; font-weight: 700; color: var(--gray-700); margin-top: 6px; }
+.pred-reco { background: var(--gray-100); border-left: 4px solid var(--primary); border-radius: 8px; padding: 12px 14px; font-size: 13px; color: var(--gray-700); margin-bottom: 14px; }
+.pred-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 11px; color: var(--gray-500); margin-top: 10px; }
+.pred-meta b { color: var(--gray-800); }
+.pred-empty { text-align: center; padding: 40px 10px; color: var(--gray-500); font-size: 13px; }
+.pred-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 20px; }
+.pred-chart-box { position: relative; height: 240px; }
+.pred-table-wrap { overflow-x: auto; }
+.pred-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.pred-table th { text-align: left; font-size: 11px; color: var(--gray-500); font-weight: 700; padding: 8px 10px; border-bottom: 1px solid var(--gray-200); }
+.pred-table td { padding: 9px 10px; border-bottom: 1px solid var(--gray-100); }
+.pred-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.pred-toolbar select { padding: 7px 10px; border: 1.5px solid var(--gray-200); border-radius: 8px; font: inherit; font-size: 12px; background: #fff; }
+.pred-note { font-size: 11px; color: var(--gray-500); margin-top: 8px; }
+.pred-pipeline { background: var(--primary-light); border: 1px solid #cfe3fb; border-radius: 12px; padding: 14px 16px; margin: 16px 0 0; font-size: 12px; color: var(--primary-deep); }
+.pred-pipeline b { display: block; margin-bottom: 4px; }
+@media (max-width: 900px) { .pred-grid { grid-template-columns: 1fr; } }
