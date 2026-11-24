@@ -60,10 +60,10 @@ function lineChart(list) {
   const x = i => d.length === 1 ? W / 2 : L + i * (W - L - R) / (d.length - 1), y = v => T + (25 - v) / 20 * (H - T - B);
   const pts = d.map((r, i) => `${x(i)},${y(r.total)}`).join(' ');
   return `<div class="chartbox"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik skor DAR-5 dari waktu ke waktu">
-    ${[5, 10, 15, 20, 25].map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="#e1e7f5"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="#5b6784">${v}</text>`).join('')}
-    <line x1="${L}" x2="${W - R}" y1="${y(CUT)}" y2="${y(CUT)}" stroke="#b42318" stroke-dasharray="5 4"/><text x="${W - R}" y="${y(CUT) - 5}" text-anchor="end" font-size="11" fill="#b42318">Ambang ${CUT}</text>
+    ${[5, 10, 15, 20, 25].map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="#E8DCCF"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="#6E5A4E">${v}</text>`).join('')}
+    <line x1="${L}" x2="${W - R}" y1="${y(CUT)}" y2="${y(CUT)}" stroke="#8B0000" stroke-dasharray="5 4"/><text x="${W - R}" y="${y(CUT) - 5}" text-anchor="end" font-size="11" fill="#8B0000">Ambang ${CUT}</text>
     ${d.length > 1 ? `<polyline points="${pts}" fill="none" style="stroke:var(--brand)" stroke-width="2.5"/>` : ''}
-    ${d.map((r, i) => `<circle cx="${x(i)}" cy="${y(r.total)}" r="5" style="fill:${over(r.total) ? '#b42318' : 'var(--brand)'}"/><text x="${x(i)}" y="${H - 12}" text-anchor="middle" font-size="11" fill="#5b6784">${fmtS(r.created_at)}</text>`).join('')}
+    ${d.map((r, i) => `<circle cx="${x(i)}" cy="${y(r.total)}" r="${over(r.total) ? 6 : 5}" stroke="#fff" stroke-width="1.5" style="fill:${over(r.total) ? '#8B0000' : 'var(--brand)'}"/><text x="${x(i)}" y="${H - 12}" text-anchor="middle" font-size="11" fill="#6E5A4E">${fmtS(r.created_at)}</text>`).join('')}
   </svg></div>`;
 }
 
@@ -82,21 +82,21 @@ const foot = `<footer class="noprint">Redam adalah alat skrining, bukan diagnosi
 
 /* ---------- Ilustrasi (SVG buatan sendiri) ---------- */
 const art = () => `<svg class="art" viewBox="0 0 520 400" role="img" aria-label="Ilustrasi dasbor Redam dengan grafik skor dan tanaman">
- <circle cx="300" cy="215" r="165" fill="#bfe6e0" opacity=".6"/>
- <g transform="translate(34,150)"><path d="M62 172C22 122 30 52 72 0c20 52 24 122-10 172z" fill="#3f9d91"/><path d="M62 172c40-40 62-92 46-142-34 30-52 92-46 142z" fill="#7cc7b9"/><path d="M62 176C12 152-4 102 10 60c30 26 48 70 52 116z" fill="#2c8277"/>
+ <circle cx="300" cy="215" r="165" fill="#FFFFFF" opacity=".45"/>
+ <g transform="translate(34,150)"><path d="M62 172C22 122 30 52 72 0c20 52 24 122-10 172z" fill="#A0522D"/><path d="M62 172c40-40 62-92 46-142-34 30-52 92-46 142z" fill="#D9C6B2"/><path d="M62 176C12 152-4 102 10 60c30 26 48 70 52 116z" fill="#8B0000"/>
   <path d="M22 172h80l-8 56a8 8 0 0 1-8 7H38a8 8 0 0 1-8-7z" fill="#fff"/></g>
- <g transform="translate(128,34)"><rect width="344" height="226" rx="14" fill="#1f2a44"/><rect x="10" y="10" width="324" height="206" rx="8" fill="#fff"/>
-  <rect x="10" y="10" width="62" height="206" rx="8" fill="#f1f7f6"/><rect x="62" y="10" width="10" height="206" fill="#f1f7f6"/>
-  <rect x="16" y="30" width="50" height="18" rx="6" fill="#d3ede8"/><rect x="22" y="36" width="34" height="6" rx="3" fill="#167a72"/>
-  ${[60, 82, 104, 126].map(y => `<rect x="22" y="${y}" width="36" height="6" rx="3" fill="#cfd9e6"/>`).join('')}
-  <rect x="88" y="24" width="112" height="9" rx="4" fill="#1f2a44"/><rect x="88" y="40" width="70" height="5" rx="2.5" fill="#c9d3e6"/><rect x="268" y="22" width="54" height="16" rx="8" fill="#167a72"/>
-  <rect x="84" y="56" width="238" height="98" rx="8" fill="#fbfdfd" stroke="#e1e7f5"/>
-  <line x1="94" x2="312" y1="106" y2="106" stroke="#d92d20" stroke-dasharray="4 3"/>
-  <polyline points="96,134 130,122 164,128 200,98 236,112 272,86 306,94" fill="none" stroke="#3f68f5" stroke-width="2.6"/>
-  ${[[96, 134], [130, 122], [164, 128], [200, 98], [236, 112], [272, 86], [306, 94]].map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="3.6" fill="#3f68f5"/>`).join('')}
-  ${[['14', 'Terbaru'], ['17', 'Sebelumnya'], ['↓3', 'Perubahan']].map((c, i) => `<rect x="${84 + i * 82}" y="162" width="74" height="46" rx="8" fill="#fff" stroke="#e1e7f5"/><text x="${94 + i * 82}" y="182" font-size="15" font-weight="700" fill="#14213d" font-family="system-ui,sans-serif">${c[0]}</text><text x="${94 + i * 82}" y="198" font-size="8.5" fill="#5b6784" font-family="system-ui,sans-serif">${c[1]}</text>`).join('')}
-  <path d="M-26 226h396l-14 18H-12z" fill="#d7dde8"/><rect x="150" y="226" width="44" height="5" rx="2.5" fill="#bcc5d4"/></g>
- ${[0, 1, 2, 3].map(r => [0, 1, 2, 3, 4].map(c => `<circle cx="${440 + c * 14}" cy="${300 + r * 14}" r="2.4" fill="#7cc7b9"/>`).join('')).join('')}
+ <g transform="translate(128,34)"><rect width="344" height="226" rx="14" fill="#3A1512"/><rect x="10" y="10" width="324" height="206" rx="8" fill="#fff"/>
+  <rect x="10" y="10" width="62" height="206" rx="8" fill="#F6EFE7"/><rect x="62" y="10" width="10" height="206" fill="#F6EFE7"/>
+  <rect x="16" y="30" width="50" height="18" rx="6" fill="#EBDCCB"/><rect x="22" y="36" width="34" height="6" rx="3" fill="#B22234"/>
+  ${[60, 82, 104, 126].map(y => `<rect x="22" y="${y}" width="36" height="6" rx="3" fill="#E3D3C2"/>`).join('')}
+  <rect x="88" y="24" width="112" height="9" rx="4" fill="#3A1512"/><rect x="88" y="40" width="70" height="5" rx="2.5" fill="#DCCAB8"/><rect x="268" y="22" width="54" height="16" rx="8" fill="#B22234"/>
+  <rect x="84" y="56" width="238" height="98" rx="8" fill="#FFFAF6" stroke="#E8DCCF"/>
+  <line x1="94" x2="312" y1="106" y2="106" stroke="#8B0000" stroke-dasharray="4 3"/>
+  <polyline points="96,134 130,122 164,128 200,98 236,112 272,86 306,94" fill="none" stroke="#B22234" stroke-width="2.6"/>
+  ${[[96, 134], [130, 122], [164, 128], [200, 98], [236, 112], [272, 86], [306, 94]].map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="3.6" fill="#B22234"/>`).join('')}
+  ${[['14', 'Terbaru'], ['17', 'Sebelumnya'], ['↓3', 'Perubahan']].map((c, i) => `<rect x="${84 + i * 82}" y="162" width="74" height="46" rx="8" fill="#fff" stroke="#E8DCCF"/><text x="${94 + i * 82}" y="182" font-size="15" font-weight="700" fill="#2A1210" font-family="system-ui,sans-serif">${c[0]}</text><text x="${94 + i * 82}" y="198" font-size="8.5" fill="#6E5A4E" font-family="system-ui,sans-serif">${c[1]}</text>`).join('')}
+  <path d="M-26 226h396l-14 18H-12z" fill="#CDB9A4"/><rect x="150" y="226" width="44" height="5" rx="2.5" fill="#BFA68C"/></g>
+ ${[0, 1, 2, 3].map(r => [0, 1, 2, 3, 4].map(c => `<circle cx="${440 + c * 14}" cy="${300 + r * 14}" r="2.4" fill="#A0522D" opacity=".55"/>`).join('')).join('')}
 </svg>`;
 
 /* ---------- Halaman depan (sebelum login) ---------- */
